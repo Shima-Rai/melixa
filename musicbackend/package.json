@@ -1,0 +1,31 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "migrate": "node services/migrate_db.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "form-data": "^4.0.5",
+    "multer": "^2.0.2",
+    "sqlite3": "^5.1.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manasarkrishna/musicbackend.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/manasarkrishna/musicbackend/issues"
+  },
+  "homepage": "https://github.com/manasarkrishna/musicbackend#readme"
+}
