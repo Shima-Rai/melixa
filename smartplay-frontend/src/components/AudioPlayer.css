@@ -1,0 +1,293 @@
+.audio-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border-top: 2px solid #D4AF37;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  gap: 2rem;
+  z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(212, 175, 55, 0.1);
+  animation: slideUp 0.5s ease-out;
+}
+
+.audio-player.empty {
+  justify-content: center;
+  height: 80px;
+}
+
+/* Progress Bar Styles */
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(30, 64, 175, 0.2);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #1e40af;
+  border-radius: 2px;
+  transition: width 0.1s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.track-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 300px;
+}
+
+.track-artwork {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.artwork-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #D4AF37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #1a1a1a;
+}
+
+.track-details {
+  text-align: left;
+}
+
+.track-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  color: #2c2c2c;
+}
+
+.track-artist {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.control-btn {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-btn:hover {
+  background: #F5F5F5;
+  color: #D4AF37;
+}
+
+.play-btn {
+  background: #D4AF37;
+  color: #1a1a1a;
+  padding: 0.75rem;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.play-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  transition: left 0.5s;
+}
+
+.play-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35);
+  animation: glow 0.6s ease-in-out, heartbeat 0.6s ease-out;
+  background: #F0E68C;
+}
+
+.play-btn:hover::before {
+  left: 100%;
+}
+
+.player-extras {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.progress-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Waveform Styles */
+.waveform-container {
+  flex: 1;
+  height: 40px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  gap: 2px;
+  padding: 0 10px;
+}
+
+.waveform-bar {
+  flex: 1;
+  background: rgba(30, 64, 175, 0.2);
+  border-radius: 1px;
+  min-height: 4px;
+  max-height: 100%;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.waveform-bar.played {
+  background: #1e40af;
+}
+
+.waveform-bar:hover {
+  background: rgba(30, 64, 175, 0.4);
+}
+
+.waveform-bar.played:hover {
+  background: #1e3a8a;
+}
+
+.progress-handle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #1e40af;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  transition: all 0.2s ease;
+  cursor: grab;
+}
+
+.progress-handle:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  box-shadow: 0 2px 12px rgba(30, 64, 175, 0.5);
+}
+
+.progress-handle:active {
+  cursor: grabbing;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Animated waveform when playing */
+.waveform-container.playing .waveform-bar {
+  animation: pulse 1s ease-in-out infinite alternate;
+}
+
+.waveform-container.playing .waveform-bar:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.waveform-container.playing .waveform-bar:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.time-display {
+  font-size: 0.8rem;
+  color: #6b7280;
+  min-width: 100px;
+}
+
+.volume-btn {
+  margin-left: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .audio-player {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+  
+  .track-info {
+    min-width: 200px;
+  }
+  
+  .track-artwork {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .waveform {
+    gap: 1px;
+    padding: 0 5px;
+  }
+  
+  .waveform-bar {
+    min-height: 3px;
+  }
+  
+  .progress-handle {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .time-display {
+    font-size: 0.7rem;
+    min-width: 80px;
+  }
+}
